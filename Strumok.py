@@ -74,23 +74,11 @@ class Strumok:
             self.state[7], self.state[6], self.state[5], self.state[4] = (~K[0]) & self.MASK, K[1], (K[2] ^ IV[2]) & self.MASK, K[3]
             self.state[3], self.state[2], self.state[1], self.state[0] = (K[4] ^ IV[1]) & self.MASK, K[5], K[6], (K[7] ^ IV[0]) & self.MASK
 
-        # for i in range(15, -1, -1):
-        #     print(f'State {i}: {self.state[i].to_bytes(8, byteorder="big").hex()}')
-        #
-        # print(f'r1: {self.r[0]}, r2: {self.r[1]}')
-
         for i in range(32):
             self._next(init=True)
-            # print(f'-{i} itaretion')
-            # for j in range(15, -1, -1):
-            #     print(f'State {j}: {self.state[j].to_bytes(8, byteorder="big").hex()}')
-            # print(f'r1: {self.r[0]}, r2: {self.r[1]}')
 
         self._next()
-        # for i in range(15, -1, -1):
-        #     print(f'State {i}: {self.state[i].to_bytes(8, byteorder="big").hex()}')
-        #
-        # print(f'r1: {self.r[0]}, r2: {self.r[1]}')
+
 
     def strum(self):
         res = self._fsm(self.state[15], self.r[0], self.r[1]) ^ self.state[0]
