@@ -22,6 +22,7 @@ class Strumok:
             for i in range(0, len(data), 8)
         ]
         return words[::-1]
+
     def _t_transform(self, w):
         return (
             strumok_T0[w & 0xFF] ^
@@ -61,7 +62,6 @@ class Strumok:
 
         K = self._bytes_to_words(key)
         IV = self._bytes_to_words(iv)
-        self.MASK = 0xFFFFFFFFFFFFFFFF  # mod 64
 
         if self.type == 256:
             self.state[15], self.state[14], self.state[13], self.state[12] = (~K[0]) & self.MASK, K[1], (~K[2]) & self.MASK, K[3]
