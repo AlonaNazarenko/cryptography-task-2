@@ -1,5 +1,6 @@
 import os
 import subprocess
+# має лежати в папці autoguess
 
 def generate_bonus_relations(T=15):
     filename = f"additional_strumok_T{T}.txt"

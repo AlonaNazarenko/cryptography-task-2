@@ -33,8 +33,12 @@ def generate_strumok512(T=11, output_dir="."):
         eqs += f"{s(t + 1, 15)}, {s(t, 0)}, {s(t, 11)}, {s(t, 13)}\n"
 
     eqs += "known\n"
-    for t in range(T - 1):
+    for t in range(T):
         eqs += f"{z(t)}\n"
+    eqs += "target\n" 
+    for i in range(16):
+        eqs += f"S_{i}\n"
+    eqs += "R1_0\nR2_0\n" 
     eqs += "end"
 
     filename = f"relationfile_{cipher_name}_{T}clk_mg{recommended_mg}_ms{recommended_ms}.txt"
